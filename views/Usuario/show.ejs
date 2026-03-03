@@ -1,0 +1,10 @@
+<link rel="stylesheet" href="/public/css/Usuario.css" />
+<div class="container">
+    <h1>Detalhes do Usuário</h1>
+    <div class="user-details">
+        <p><strong>ID:</strong> <%= user.id %></p>
+        <p><strong>Nome:</strong> <%= user.nome %></p>
+        <p><strong>Email:</strong> <%= user.email %></p>
+        <p><strong>Data de Nascimento:</strong> <%= user.data_nascimento.toDateString() %></p>
+    </div>
+    <a href="/views/Usuario/edit/<%= user.id %>" class="btn">Editar Usuário</a>
