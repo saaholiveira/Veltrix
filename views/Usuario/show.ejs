@@ -7,4 +7,5 @@
         <p><strong>Email:</strong> <%= user.email %></p>
         <p><strong>Data de Nascimento:</strong> <%= user.data_nascimento.toDateString() %></p>
     </div>
-    <a href="/Usuario/edit/<%= user.id %>" class="btn">Editar Usuário</a>
+    <a href="/usuario/edit/<%= user.id %>" class="btn">Editar Usuário</a>
+    <a href="/usuario/add/<%= user.id %>" class="btn">Adicionar Usuário</a>

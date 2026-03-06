@@ -35,25 +35,25 @@ app.get('/views/Monitoramento', (req, res) => {
 
 //Rota para a pagina Usuário
 // LISTAR
-app.get('/Usuario', (req, res) => {
-    res.render('Usuario/index');
+app.get('/usuario', (req, res) => {
+    res.render('usuario/index');
 });
 
 // MOSTRAR
-app.get('/Usuario/show/:id', (req, res) => {
+app.get('/usuario/show/:id', (req, res) => {
     const userId = req.params.id;
-    res.render('Usuario/show', { userId });
+    res.render('usuario/show', { userId });
 });
 
 // EDITAR
-app.get('/Usuario/edit/:id', (req, res) => {
+app.get('/usuario/edit/:id', (req, res) => {
     const userId = req.params.id;
-    res.render('Usuario/edit', { userId });
+    res.render('usuario/edit', { userId });
 });
 
 // ADICIONAR
 app.get('/Usuario/add', (req, res) => {
-    res.render('Usuario/add');
+    res.render('usuario/add');
 });
 
 
