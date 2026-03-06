@@ -40,7 +40,7 @@ app.get('/Usuario', (req, res) => {
 });
 
 // MOSTRAR
-app.get('/usuario/show/:id', (req, res) => {
+app.get('/Usuario/show/:id', (req, res) => {
     const userId = req.params.id;
     res.render('Usuario/show', { userId });
 });
