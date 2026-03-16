@@ -1,48 +1,16 @@
-<!DOCTYPE html>
-<html lang="pt-br">
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Usuários</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Usuário</title>
 </head>
 <body>
+   <%- include('../partials/navbar') %>
 
-    <h1>Lista de Usuários</h1>
-
-    <a href="/usuario/add">Adicionar Novo Usuário</a>
-    <a href="/usuario/edit">Editar</a>
-
-    <table class="table">
-  <thead>
-    <tr>
-      <th scope="col">#</th>
-      <th scope="col"></th>
-      <th scope="col">Last</th>
-      <th scope="col">Handle</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th scope="row">1</th>
-      <td></td>
-      <td>Otto</td>
-      <td>@mdo</td>
-    </tr>
-    <tr>
-      <th scope="row">2</th>
-      <td>Jacob</td>
-      <td>Thornton</td>
-      <td>@fat</td>
-    </tr>
-    <tr>
-      <th scope="row">3</th>
-      <td>John</td>
-      <td>Doe</td>
-      <td>@social</td>
-    </tr>
-  </tbody>
-</table>
-    
-    <a href="/">Voltar para página inicial</a>
-
+   <div class="container">
+        <h1><%= user.nome %></h1>
+        <p><%= user.email %></p>
+        <p>*descrição*</p>
+        <a href="/usuario/add">Adicionar</a>
 </body>
 </html>
