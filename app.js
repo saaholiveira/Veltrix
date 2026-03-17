@@ -24,7 +24,8 @@ let meucarro = [
 
 //Rota principal
 app.get('/', (req, res) => {
-    res.render('index');
+    const user = usuario[1];
+    res.render('index', { user });
 });
 
 //Importando as rotas
@@ -101,9 +102,20 @@ app.post('/usuario/edit/:id', (req, res) => {
 });
 // ADICIONAR
 app.get('/usuario/add', (req, res) => {
-    res.render('usuario/add');
+    res.render('usuario/add'); // aqui você renderiza add.ejs
 });
 
+app.post('/usuario/add', (req, res) => {
+    const novoUsuario = {
+        id: usuario.length + 1,
+        nome: req.body.nome,
+        email: req.body.email
+    };
+
+    usuario.push(novoUsuario);
+
+    res.redirect('/usuario'); // volta pra lista ou home do usuário
+});
 
 //Rota para a pagina Histórico
 app.get('/historico', (req, res) => {
