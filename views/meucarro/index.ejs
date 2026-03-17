@@ -1,0 +1,22 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meu Carro</title>
+    <link rel="stylesheet" href="/css/MeuCarro.css">
+</head>
+<body>
+
+   <%- include('../partials/navbar') %>
+
+    <div class="container">
+        <h1><%= user.modelo %></h1>
+        <p><%= user.ano %></p>
+        <p>*descrição*</p>
+        <a href="/meucarro/add">Adicionar</a>
+
+
+
+    </div>
+</body>
+</html>
