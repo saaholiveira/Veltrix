@@ -50,8 +50,8 @@ app.post('/meucarro/add', (req, res) => {
 });
 
 //Rota para a pagina Monitoramento
-app.get('/views/Monitoramento', (req, res) => {
-    res.render('Monitoramento');
+app.get('/monitoramento', (req, res) => {
+    res.render('monitoramento');
 });
 
 //Rota para a pagina Usuário
@@ -106,8 +106,8 @@ app.get('/usuario/add', (req, res) => {
 
 
 //Rota para a pagina Histórico
-app.get('/views/Histórico', (req, res) => {
-    res.render('Histórico');
+app.get('/historico', (req, res) => {
+    res.render('historico');
 });
 
 
