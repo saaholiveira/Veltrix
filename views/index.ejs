@@ -10,15 +10,32 @@
     <% include('partials/navbar') %>
 
     <div class="container">
-        <h1>Bem-vindo, <%= user.nome %> </h1>
-        <p>Este é um projeto de exemplo usando Node.js, Express e EJS.</p><br>
-        <p>Use os Botões do Menu para navegar entre as páginas.</p>
-        <div class="row mt-4">
+        <h1>Bem-vindo(a), <%= user.nome %> </h1>
+        <p>Ultima atualização: <%= user.ultima_atualizacao %></p><br>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 mb-2">
+                    <div class="card text-white bg-primary mb-3">
+                        <div class="card-body">
+                            <h5 class="card-title">Veiculo Atual:</h5>
+                            <p class="card-text"><%= user.veiculo_atual %></p>
+        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 mb-2">
+                    <div class="card text-white bg-secondary mb-3">
+                        <div class="card-body">
+                            <h5 class="card-title">Status do Veiculo:</h5>
+                            <p class="card-text"><%= user.status_veiculo %></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
             <div class="col-md-3 mb-2">
                 <a href="/usuario/" class="btn btn-primary w-100">Usuário</a>
             </div>
             <div class="col-md-3 mb-2">
-                <a href="/meucarro/" class="btn btn-primary w-100">Meu Carro</a>
+                <a href="/meucarro/" class="btn btn-primary w-100">Veículos</a>
             </div>
             <div class="col-md-3 mb-2">
                 <a href="/monitoramento/" class="btn btn-primary w-100">Monitoramento</a>
