@@ -22,10 +22,13 @@ let meucarro = [
     {id: 2, modelo: "Jetta GLI", ano: "2018", cod_obd2: "elm3916vat"},
 ];
 
+
 //Rota principal
 app.get('/', (req, res) => {
-    const user = usuario[1];
-    res.render('index', { user });
+  const user = usuario[1];
+  const meucarroAtual = meucarro[0];
+
+  res.render('index', { user, meucarroAtual });
 });
 
 //Importando as rotas
@@ -58,8 +61,7 @@ app.get('/monitoramento', (req, res) => {
 //Rota para a pagina Usuário
 // LISTAR
 app.get('/usuario', (req, res) => {
-    const user = usuario[0]; 
-    res.render('usuario/index', { user });
+    res.render('usuario/index', { usuarios: usuario });
 });
 
 // MOSTRAR
@@ -101,20 +103,20 @@ app.post('/usuario/edit/:id', (req, res) => {
     res.redirect('/usuario')
 });
 // ADICIONAR
+// Mostrar formulário de adicionar usuário
 app.get('/usuario/add', (req, res) => {
-    res.render('usuario/add'); // aqui você renderiza add.ejs
+    res.render('usuario/add', { usuarios: usuario }); // envia o array
 });
 
+// Receber dados do formulário
 app.post('/usuario/add', (req, res) => {
     const novoUsuario = {
         id: usuario.length + 1,
         nome: req.body.nome,
         email: req.body.email
     };
-
     usuario.push(novoUsuario);
-
-    res.redirect('/usuario'); // volta pra lista ou home do usuário
+    res.redirect('/usuario/add'); // volta pra mesma página com lista atualizada
 });
 
 //Rota para a pagina Histórico

@@ -8,8 +8,13 @@
    <%- include('../partials/navbar') %>
 
    <div class="container">
-        <h1><%= user.nome %></h1>
-        <p><%= user.email %></p>
+       <h1>Lista de Usuários</h1>
+
+<ul>
+  <% usuarios.forEach(u => { %>
+    <li><strong><%= u.nome %></strong> - <%= u.email %></li>
+  <% }) %>
+</ul>
         <p>*descrição*</p>
         <a href="/usuario/add">Adicionar</a>
 </body>

@@ -1,11 +1,35 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Cadastro de Usuário</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        form { margin-bottom: 20px; }
+        input { margin: 5px 0; display: block; padding: 5px; }
+        button { padding: 5px 10px; }
+        ul { list-style-type: none; padding: 0; }
+        li { padding: 5px 0; border-bottom: 1px solid #ccc; }
+    </style>
+</head>
+<body>
+
+<button onclick="window.location.href='/usuario'">Voltar</button>
 <h1>Cadastro de Usuário</h1>
 
 <form action="/usuario/add" method="POST">
-    <label for="nome">Nome:</label>
-    <input type="text" id="nome" name="nome" required>
-
-    <label for="email">Email:</label>
-    <input type="email" id="email" name="email" required>
-
+    <input type="text" name="nome" placeholder="Nome" required>
+    <input type="email" name="email" placeholder="Email" required>
     <button type="submit">Cadastrar</button>
 </form>
+
+<h2>Lista de Usuários</h2>
+
+<ul>
+  <% usuarios.forEach(u => { %>
+    <li><strong><%= u.nome %></strong> - <%= u.email %></li>
+  <% }) %>
+</ul>
+
+</body>
+</html>
