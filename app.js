@@ -39,8 +39,13 @@ app.get('/meucarro', (req, res) => {
     res.render('meucarro/index', { user });
 });
 
-app.post('/meucarro/add', (req, res) => {
+// Rota GET - mostrar formulário e lista
+app.get('/meucarro/add', (req, res) => {
+    res.render('meucarro/add', { carros: meucarro }); // envia todos os carros
+});
 
+// Rota POST - adicionar carro
+app.post('/meucarro/add', (req, res) => {
     const novoCarro = {
         id: meucarro.length + 1,
         modelo: req.body.modelo,
@@ -50,7 +55,7 @@ app.post('/meucarro/add', (req, res) => {
 
     meucarro.push(novoCarro);
 
-    res.redirect('/meucarro');
+    res.redirect('/meucarro/add'); // recarrega a mesma página mostrando a lista atualizada
 });
 
 //Rota para a pagina Monitoramento
@@ -121,9 +126,9 @@ app.post('/usuario/add', (req, res) => {
 
 //Rota para a pagina Histórico
 app.get('/historico', (req, res) => {
-    res.render('historico');
+    const user = { data: '2026-03-27' }; // exemplo
+    res.render('historico', { user });
 });
-
 
 // ROTA MEUCARRO
 

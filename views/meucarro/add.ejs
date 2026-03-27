@@ -1,15 +1,38 @@
-<h1>Cadastro do meu Carro</h1>
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <button onclick="window.location.href='/meucarro'">Voltar</button>
+    <title>Cadastro de Carros</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        form { margin-bottom: 20px; }
+        input { margin: 5px 0; display: block; padding: 5px; }
+        button { padding: 5px 10px; }
+        ul { list-style-type: none; padding: 0; }
+        li { padding: 5px 0; border-bottom: 1px solid #ccc; }
+    </style>
+</head>
+<body>
+
+<h1>Cadastro de Carros</h1>
 
 <form action="/meucarro/add" method="POST">
-    <label for="modelo">modelo</label>
-    <input type="text" id="nome" name="modelo" value="<%= user.modelo %>" required>
-
-    <label for="ano">ano</label>
-    <input type="number" id="ano" name="ano" value="<%= user.ano %>" required>
-
-    <label for="cod_obd2">codigo OBD2</label>
-    <input type="text" id="cod_obd2" name="cod_obd2" value="<%= user.cod_obd2 %>" required>
-
-    <button type="submit">Salvar</button>
+    <input type="text" name="modelo" placeholder="Modelo" required>
+    <input type="text" name="ano" placeholder="Ano" required>
+    <input type="text" name="cod_obd2" placeholder="Código OBD2" required>
+    <button type="submit">Cadastrar</button>
 </form>
 
+<h2>Veículos encontrados</h2>
+
+<ul>
+  <% carros.forEach(c => { %>
+    <li>
+      <strong><%= c.modelo %></strong> - <%= c.ano %> - OBD2: <%= c.cod_obd2 %>
+    </li>
+  <% }) %>
+</ul>
+
+</body>
+</html>
