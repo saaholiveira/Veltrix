@@ -3,6 +3,17 @@ const express = require('express');
 const path = require('path');
 const app = express();
 const port = 3000;
+const mysql = require('mysql2/promise');
+
+const db = mysql.createPool({
+    host: 'localhost',
+    user: 'root',
+    password: 'senha',
+    database: 'rastreamento'
+});
+
+module.exports = db;
+
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
@@ -22,7 +33,29 @@ let meucarro = [
     {id: 2, modelo: "Jetta GLI", ano: "2018", cod_obd2: "elm3916vat"},
 ];
 
+//my sql bd
+app.post('/rastreamento', async (req, res) => {
+    const { veiculo_id, latitude, longitude, velocidade, ignicao } = req.body;
 
+    try {
+    //atualizar em tempo real
+    await db.query(`INSERT INTO monitoramento (veiculo_id, latitude, longitude, velocidade, ignicao) VALUES (?, ?, ?, ?, ?)
+        on duplicate key update latitude = VALUES(latitude), longitude = VALUES(longitude), velocidade = VALUES(velocidade), ignicao = VALUES(ignicao)`, [veiculo_id, latitude, longitude, velocidade, ignicao]);
+
+//salvar histórico
+    await db.query(`INSERT INTO historico_posicoes (veiculo_id, latitude, longitude, velocidade, ignicao) VALUES (?, ?, ?, ?, ?)`, [veiculo_id, latitude, longitude, velocidade, ignicao]);
+
+    res.json({ ok: true });
+
+} catch (error) {
+    console.error('Erro ao processar dados de rastreamento:', error);
+    res.status(500).json({ erro: error.message });
+}
+});
+
+app.listen(3000, () => {
+    console.log('Servidor rodando na porta 3000');
+});
 //Rota principal
 app.get('/', (req, res) => {
   const user = usuario[1];
