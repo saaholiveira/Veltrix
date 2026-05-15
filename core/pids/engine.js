@@ -1,5 +1,13 @@
 function calcularRPM(resposta) {
 
+    // Limpa caracteres extras do ELM327
+    resposta = resposta
+        .replace(/\r/g, '')
+        .replace(/\n/g, '')
+        .replace(/>/g, '')
+        .trim();
+
+    // Separa os bytes
     const bytes = resposta.split(' ');
 
     const A = parseInt(bytes[2], 16);
@@ -10,6 +18,12 @@ function calcularRPM(resposta) {
 
 function calcularTemperatura(resposta) {
 
+    resposta = resposta
+        .replace(/\r/g, '')
+        .replace(/\n/g, '')
+        .replace(/>/g, '')
+        .trim();
+
     const bytes = resposta.split(' ');
 
     const A = parseInt(bytes[2], 16);
@@ -18,6 +32,12 @@ function calcularTemperatura(resposta) {
 }
 
 function calcularCombustivel(resposta) {
+
+    resposta = resposta
+        .replace(/\r/g, '')
+        .replace(/\n/g, '')
+        .replace(/>/g, '')
+        .trim();
 
     const bytes = resposta.split(' ');
 
@@ -28,12 +48,24 @@ function calcularCombustivel(resposta) {
 
 function calcularVelocidade(resposta) {
 
+    resposta = resposta
+        .replace(/\r/g, '')
+        .replace(/\n/g, '')
+        .replace(/>/g, '')
+        .trim();
+
     const bytes = resposta.split(' ');
 
     return parseInt(bytes[2], 16);
 }
 
 function calcularBateria(resposta) {
+
+    resposta = resposta
+        .replace(/\r/g, '')
+        .replace(/\n/g, '')
+        .replace(/>/g, '')
+        .trim();
 
     const bytes = resposta.split(' ');
 

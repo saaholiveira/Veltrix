@@ -1,19 +1,24 @@
-import { enviarPID } from './commands';
-import { limparResposta } from '../parser/pidParser';
-import { interpretarPID } from '../pids';
-import { parseDTC } from '../dtc'; // importante
+const { enviarPID } = require('./commands');
+
+const { limparResposta } = require('../parser/pidParser');
+
+const { interpretarPID } = require('../pids');
+
+const { parseDTC } = require('../dtc');
 
 function delay(ms) {
     return new Promise(r => setTimeout(r, ms));
 }
 
-export class OBDService {
+class OBDService {
+
     constructor(connection) {
         this.connection = connection;
     }
 
-    // 🔹 PIDs normais
+    // PIDs
     async getPID(pid) {
+
         await enviarPID(this.connection, pid);
 
         await delay(300);
@@ -22,15 +27,20 @@ export class OBDService {
 
         res = limparResposta(res);
 
-        if (!res.includes("41")) {
+        if (res.includes("NO DATA")) {
+            throw new Error("Sem resposta do veículo");
+        }
+
+        if (!res.startsWith("41")) {
             throw new Error("PID não suportado");
         }
 
         return interpretarPID(pid, res);
     }
 
-    // 🔹 DTCs (CÓDIGOS DE ERRO)
+    // DTCs
     async getDTC() {
+
         await this.connection.write("03\r");
 
         await delay(300);
@@ -42,3 +52,7 @@ export class OBDService {
         return parseDTC(res);
     }
 }
+
+module.exports = {
+    OBDService
+};
