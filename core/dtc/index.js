@@ -1,19 +1,14 @@
-const parseDTC = require('../parser/dtcParser');
+const commands = require('./commands');
 
-class DTCService {
+const dtcCodes = require('./dtcCodes');
 
-    constructor(connection) {
-        this.connection = connection;
-    }
+const parseDTC = require('./dtcParser');
 
-    async getDTC() {
+const DTCService = require('./dtcService');
 
-        await this.connection.write("03");
-
-        const response = await this.connection.read();
-
-        return parseDTC(response);
-    }
-}
-
-module.exports = DTCService;
+module.exports = {
+    commands,
+    dtcCodes,
+    parseDTC,
+    DTCService
+};

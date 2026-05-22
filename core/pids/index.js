@@ -28,4 +28,4 @@ function interpretarPID(pid, resposta) {
 
 module.exports = {
     interpretarPID
-}; //teste
+}; 
