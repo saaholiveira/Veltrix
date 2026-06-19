@@ -1,4 +1,4 @@
-const parseDTC = require('./dtcParser');
+const { parseDTC } = require('./dtcParser');
 
 const dtcCodes = require('./dtcCodes');
 

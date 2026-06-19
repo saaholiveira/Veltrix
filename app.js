@@ -4,6 +4,11 @@ const path = require('path');
 const app = express();
 const port = 3000;
 const mysql = require('mysql2/promise');
+const dtcRoutes = require('./routes/dtc.routes');
+const monitoramentoRoutes = require('./routes/monitoramento.js');
+
+app.use('/api/dtc', dtcRoutes);
+app.use('/api/monitoramento', monitoramentoRoutes);
 
 const db = mysql.createPool({
     host: 'localhost',
@@ -132,7 +137,7 @@ app.get('/usuario/edit/:id', (req, res) => {
 
 app.post('/usuario/edit/:id', (req, res) => {
     
-    const user = usuarios.find(u => u.id == req.params.id);
+    const user = usuario.find(u => u.id == req.params.id);
     if (user) {
         user.nome = req.body.nome;
         user.email = req.body.email;

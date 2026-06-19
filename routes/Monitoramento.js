@@ -2,11 +2,12 @@ const express = require('express');
 
 const router = express.Router();
 
-const controller =
-require('../modules/monitoramento/monitoramento.controller');
+const monitoramentoController =
+    require('../modules/monitoramento/monitoramento.controller');
 
-router.get('/dtc', controller.getDTC);
-
-router.delete('/dtc', controller.clearDTC);
+router.get(
+    '/',
+    monitoramentoController.obterDados
+);
 
 module.exports = router;

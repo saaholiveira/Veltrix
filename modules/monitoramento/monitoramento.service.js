@@ -1,17 +1,46 @@
-import { OBDService } from '../../core/obd/obdService';
+const Connection = require('../../core/obd/connection');
+const { OBDService } = require('../../core/obd/obdService');
+const DTCService = require('../../core/dtc/dtcService');
 
 class MonitoramentoService {
-    constructor(connection) {
-        this.obd = new OBDService(connection);
+
+    constructor() {
+
+        const connection = new Connection();
+
+        this.obdService =
+            new OBDService(connection);
+
+        this.dtcService =
+            new DTCService(connection);
     }
 
-    async getDados() {
+    async obterDados() {
+
+     const rpm =
+    await this.obdService.getPID('010C');
+
+const temperatura =
+    await this.obdService.getPID('0105');
+
+const combustivel =
+    await this.obdService.getPID('012F');
+
+const bateria =
+    await this.obdService.getPID('0142');
+
+        const dtcs =
+            await this.dtcService.getDTC();
+
         return {
-            rpm: await this.obd.getPID("010C"),
-            temperatura: await this.obd.getPID("0105"),
-            combustivel: await this.obd.getPID("012F")
+            rpm,
+            temperatura,
+            combustivel,
+            bateria,
+            dtcs
         };
     }
 }
 
-export default MonitoramentoService;
+module.exports =
+    new MonitoramentoService();

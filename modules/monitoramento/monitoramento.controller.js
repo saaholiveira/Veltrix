@@ -1,44 +1,29 @@
-const Connection =
-require('../../core/obd/connection');
+const monitoramentoService =
+    require('./monitoramento.service');
 
-const { DTCService } =
-require('../../core/dtc');
+class MonitoramentoController {
 
-const connection = new Connection();
+    async obterDados(req, res) {
 
-const dtcService =
-new DTCService(connection);
+        try {
 
-exports.getDTC = async (req, res) => {
+            const dados =
+                await monitoramentoService.obterDados();
 
-    try {
+            return res.json({
+                sucesso: true,
+                dados
+            });
 
-        const result =
-        await dtcService.getDTC();
+        } catch (error) {
 
-        res.json(result);
-
-    } catch (error) {
-
-        res.status(500).json({
-            erro: error.message
-        });
+            return res.status(500).json({
+                sucesso: false,
+                erro: error.message
+            });
+        }
     }
-};
+}
 
-exports.clearDTC = async (req, res) => {
-
-    try {
-
-        const result =
-        await dtcService.clearDTC();
-
-        res.json(result);
-
-    } catch (error) {
-
-        res.status(500).json({
-            erro: error.message
-        });
-    }
-};
+module.exports =
+    new MonitoramentoController();
