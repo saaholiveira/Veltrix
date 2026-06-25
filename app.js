@@ -19,6 +19,11 @@ const db = mysql.createPool({
 
 module.exports = db;
 
+const historicoRoutes =
+require('./routes/historicoRoutes');
+
+app.use('/historico', historicoRoutes);
+
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
